@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Encriptador de Texto Jose Espinoza</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f9f9f9;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+		.container {
+			width: 400px;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+		h1 {
+			color: #333;
+			text-align: center;
+		}
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+		input[type="text"],
+		select,
+		textarea {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+		button {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Encriptador de Texto</h1>
+
+		<label for="input-text">Texto:</label>
+		<input type="text" id="input-text">
+		<br><br>
+
+		<input type="radio" id="encrypt-radio" name="operation" value="encrypt">
+		<label for="encrypt-radio">Encriptar</label>
+		<input type="radio" id="decrypt-radio" name="operation" value="decrypt">
+		<label for="decrypt-radio">Desencriptar</label>
+		<br><br>
+
+		<button type="button" onclick="processText()">Procesar</button>
+		<button type="button" onclick="copyToClipboard()">Copiar</button>
+		<br><br>
+
+		<label for="output-text">Resultado:</label>
+		<textarea id="output-text" readonly></textarea>
+	</div>
+
+	<script>
+		function processText() {
+			let input = document.getElementById("input-text").value;
+			let operation = document.querySelector('input[name="operation"]:checked').value;
+			let output = "";
+
+			if (operation === "encrypt") {
+				output = encryptText(input);
+			} else if (operation === "decrypt") {
+				output = decryptText(input);
+			}
+
+			document.getElementById("output-text").value = output;
+		}
+
+		function encryptText(text) {
+			text = text.toLowerCase();
+
+			text = text.replaceAll("e", "enter");
+			text = text.replaceAll("i", "imes");
+			text = text.replaceAll("a", "ai");
+			text = text.replaceAll("o", "ober");
+			text = text.replaceAll("u", "ufat");
+
+			return text;
+		 }
+
+		 function decryptText(text) {
+			text = text.toLowerCase();
+
+			text = text.replaceAll("enter", "e");
+			text = text.replaceAll("imes", "i");
+			text = text.replaceAll("ai", "a");
+			text = text.replaceAll("ober", "o");
+			text = text.replaceAll("ufat", "u");
+
+			return text;
+		 }
+
+		 function copyToClipboard() {
+			let output = document.getElementById("output-text");
+			output.select();
+			document.execCommand("copy");
+			alert("Texto copiado al portapapeles");
+		 }
+	</script>
+</body>
+</html>
